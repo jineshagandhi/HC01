@@ -173,6 +173,8 @@ This is a core design concern. The system uses \*\*6 independent layers\*\* to p
 \*\*Deliverable:\*\* Live, interactive demo ready for judges.
 
 \---
+System Architecture
+<img width="1397" height="749" alt="image" src="https://github.com/user-attachments/assets/8d5e520f-3bc0-4016-be66-a9e60e54083c" />
 
 \#\# 🗂️ Repository Structure (Planned)
 
