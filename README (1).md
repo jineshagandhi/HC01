@@ -181,45 +181,6 @@ This is a core design concern. The system uses \*\*6 independent layers\*\* to p
 System Architecture
 <img width="1397" height="749" alt="image" src="https://github.com/user-attachments/assets/8d5e520f-3bc0-4016-be66-a9e60e54083c" />
 
-\#\# 🗂️ Repository Structure (Planned)
-
-\`\`\`  
-HC01/  
-├── data/  
-│   ├── mimic/               \# MIMIC-III demo CSVs  
-│   └── guidelines/          \# Clinical guideline PDFs / text corpus  
-├── src/  
-│   ├── data\_layer/  
-│   │   ├── mimic\_loader.py  
-│   │   ├── patient\_context\_builder.py  
-│   │   ├── guideline\_corpus\_loader.py  
-│   │   └── vector\_store.py  
-│   ├── agents/  
-│   │   ├── note\_parser\_agent.py  
-│   │   ├── temporal\_lab\_mapper\_agent.py  
-│   │   ├── guideline\_rag\_agent.py  
-│   │   └── chief\_synthesis\_agent.py  
-│   ├── safety/  
-│   │   ├── outlier\_detection.py  
-│   │   ├── confidence\_scorer.py  
-│   │   ├── citation\_verifier.py  
-│   │   └── safety\_caveat\_injector.py  
-│   ├── orchestration/  
-│   │   ├── orchestrator.py  
-│   │   └── prompt\_templates/  
-│   │       ├── note\_parser.txt  
-│   │       ├── temporal\_lab\_mapper.txt  
-│   │       ├── guideline\_rag.txt  
-│   │       └── chief\_synthesis.txt  
-│   └── output/  
-│       ├── timeline\_renderer.py  
-│       └── report\_generator.py  
-├── ui/  
-│   └── app.py               \# Streamlit demo interface  
-├── tests/  
-├── requirements.txt  
-└── README.md  
-\`\`\`
 
 \#\# 🛠️ Tech Stack
 
