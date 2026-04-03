@@ -44,6 +44,11 @@ LLMs can confabulate — generating plausible-sounding but fabricated clinical c
 \- Citations to specific clinical guidelines supporting each flag  
 \- Outlier detection that refuses to update diagnosis on statistically anomalous lab values  
 \- Explicit safety caveats on every output
+\- Lab error refusal, flagging emerging new symptoms.
+\- 3 Cross referencing methods.
+\- Providing a confidence score for extracted symptoms from hybrid inputs. 
+\- Eliminating black box concept by providing transperency and rejecting solutions instead of just flagging them while giving evidence and justification.
+\- Providing risk score graphs.
 
 \# 🧩 System Architecture
 
@@ -61,7 +66,7 @@ LLMs can confabulate — generating plausible-sounding but fabricated clinical c
 | Component | Role |  
 |---|---|  
 | \*\*MIMIC-III Data Loader\*\* | Ingests MIMIC-III demo CSVs (admissions, labs, notes, vitals) and normalizes schema |  
-| \*\*Patient Context Builder\*\* | Assembles a single patient's full record into a structured object passed to all agents |  
+| \*\*Patient Context Builder\*\* | Assembles a single patient's full record into a structured object passed to all agents from varied inputs |  
 | \*\*Guideline Corpus Loader\*\* | Loads, chunks, and embeds clinical guideline PDFs (Sepsis-3, SOFA, qSOFA, AKI, KDIGO) |  
 | \*\*Vector Store\*\* | Indexes embedded guideline chunks for semantic retrieval (ChromaDB / FAISS) |
 
@@ -179,7 +184,7 @@ System Architecture
 \#\# 🗂️ Repository Structure (Planned)
 
 \`\`\`  
-criticalmind/  
+HC01/  
 ├── data/  
 │   ├── mimic/               \# MIMIC-III demo CSVs  
 │   └── guidelines/          \# Clinical guideline PDFs / text corpus  
@@ -237,6 +242,16 @@ criticalmind/
 \> Members- Jinesha Gandhi  
                    \-Anushka Garud  
                    \- Rutuja Shelke
+
+
+###Citations
+Base paper-
+[1] C. Stylianides et al., “AI Advances in ICU with an Emphasis on Sepsis Prediction,” Healthcare, vol. 7, no. 1, 2025.
+
+[2] A. Amirsavadkouhi and S. B. Mirtajani, “The Role of Artificial Intelligence in the Prediction, Diagnosis, and Management of Sepsis in the Intensive Care Unit,” Medical Research Archives, vol. 13, no. 2, 2025.
+
+[3] G. H. Abbas et al., “Artificial Intelligence-Based Predictive Modeling for Early Sepsis Detection in Hospitalized Patients,” Critical Care Explorations, vol. 7, no. 12, 2025.
+
 
 \#\# 📄 License
 
