@@ -96,7 +96,7 @@ When a new lab result **contradicts 3 days of consistent data**, the system:
 ## Project Structure
 
 ```
-IGNISIA/
+HC01/
   app.py                              # Streamlit home page
   requirements.txt                    # Python dependencies
   .env                                # API keys (create this)
