@@ -100,6 +100,10 @@ HC01/
   app.py                              # Streamlit home page
   requirements.txt                    # Python dependencies
   .env                                # API keys (create this)
+  README.md
+  download_sepsis.py
+  run.bat
+  setup.bat
   
   pages/
     1_Patient_Overview.py             # Patient selection & data viewing
