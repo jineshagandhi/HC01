@@ -1,0 +1,30 @@
+# Core
+streamlit==1.40.0
+python-dotenv==1.0.1
+pydantic==2.9.2
+
+# Google Gemini LLM
+google-generativeai==0.8.3
+
+# Vector DB & Embeddings
+chromadb==0.5.15
+sentence-transformers==3.2.1
+
+# Medical NLP
+spacy==3.7.6
+
+# Data Processing
+pandas==2.2.3
+numpy==1.26.4
+scipy==1.14.1
+scikit-learn==1.5.2
+
+# PDF Parsing
+pypdf==5.0.1
+fpdf2==2.8.1
+
+# Visualization
+plotly==5.24.1
+
+# Date handling
+python-dateutil==2.9.0
