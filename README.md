@@ -116,19 +116,26 @@ HC01/
   backend/
     config.py                         # Configuration & thresholds
     orchestrator.py                   # Multi-agent pipeline coordinator
+    requirements.txt
     agents/
       note_parser.py                  # Agent 1: Clinical note NLP
       temporal_mapper.py              # Agent 2: Scoring & trends
       guideline_rag.py                # Agent 3: Guideline retrieval
       chief_synthesis.py              # Agent 4: Report synthesis
+      __init__.py
     utils/
       sofa_calculator.py              # SOFA, qSOFA, SIRS scoring
       outlier_detector.py             # Z-score outlier detection
     data/
       ingestion.py                    # MIMIC-IV data loading
       note_generator.py               # Synthetic clinical notes
+      __init__.py
     rag/
       vector_store.py                 # ChromaDB vector store
+    __init__.py
+    models/
+      __init__.py
+      patient.py
   
   data/
     mimic/                            # MIMIC-IV demo dataset
