@@ -61,6 +61,27 @@ LLMs can confabulate — generating plausible-sounding but fabricated clinical c
 | \*\*Guideline RAG Agent\*\* | Retrieves and cites exact clinical guideline passages supporting each flagged finding | Flagged findings from other agents | Cited guideline excerpts with source references |  
 | \*\*Chief Synthesis Agent\*\* | Integrates all agent outputs; runs outlier detection; resolves conflicts; generates final report | All agent outputs | Diagnostic Risk Report |
 
+### Twist 1: Family Communication
+
+The diagnostic report is packed with clinical jargon. The Family Communication tab produces a **compassionate, jargon-free summary** of the patient's last 12 hours:
+
+- Written as if explaining to a non-medical family member
+- Translated into **English + a regional language** (Hindi, Tamil, Bengali, Telugu, and 11 more)
+- Default language is English; select a second language from the dropdown
+- Includes simplified risk status and diagnosis hold explanations
+- Print-friendly version for sharing
+
+### Twist 2: Diagnosis Hold
+
+When a new lab result **contradicts 3 days of consistent data**, the system:
+
+1. **Detects** the statistical outlier (Z-score > 3 standard deviations)
+2. **Verifies** the prior 72 hours were consistent (coefficient of variation < 25%)
+3. **Flags** it as a probable mislabeled/erroneous result
+4. **REFUSES** to revise the diagnosis until a confirmed redraw is received
+5. **Excludes** the anomalous value from all risk calculations
+6. Shows a red **DIAGNOSIS HOLD** banner on the dashboard
+7. 
 \#\#\# Data Layer
 
 | Component | Role |  
@@ -71,6 +92,60 @@ LLMs can confabulate — generating plausible-sounding but fabricated clinical c
 | \*\*Vector Store\*\* | Indexes embedded guideline chunks for semantic retrieval (ChromaDB / FAISS) |
 
 \#\#\# Safety & Validation Layer
+
+## Project Structure
+
+```
+IGNISIA/
+  app.py                              # Streamlit home page
+  requirements.txt                    # Python dependencies
+  .env                                # API keys (create this)
+  
+  pages/
+    1_Patient_Overview.py             # Patient selection & data viewing
+    2_Disease_Timeline.py             # SOFA/qSOFA charts & lab trends
+    3_Risk_Report.py                  # Full diagnostic risk report + PDF
+    4_Shift_Handoff.py                # Shift change summary
+    5_Outlier_Alerts.py               # Lab error screening
+    6_Family_Communication.py         # Family-friendly summary (NEW)
+  
+  backend/
+    config.py                         # Configuration & thresholds
+    orchestrator.py                   # Multi-agent pipeline coordinator
+    agents/
+      note_parser.py                  # Agent 1: Clinical note NLP
+      temporal_mapper.py              # Agent 2: Scoring & trends
+      guideline_rag.py                # Agent 3: Guideline retrieval
+      chief_synthesis.py              # Agent 4: Report synthesis
+    utils/
+      sofa_calculator.py              # SOFA, qSOFA, SIRS scoring
+      outlier_detector.py             # Z-score outlier detection
+    data/
+      ingestion.py                    # MIMIC-IV data loading
+      note_generator.py               # Synthetic clinical notes
+    rag/
+      vector_store.py                 # ChromaDB vector store
+  
+  data/
+    mimic/                            # MIMIC-IV demo dataset
+    guidelines/                       # Clinical guideline PDFs
+    chroma_db/                        # Vector database (auto-created)
+```
+
+---
+
+## Tech Stack
+
+| Component | Technology | Cost |
+|-----------|-----------|------|
+| LLM | Google Gemini 2.0 Flash | Free |
+| Frontend | Streamlit 1.40 | Free |
+| Vector DB | ChromaDB 0.5 | Free |
+| Embeddings | SentenceTransformer (all-MiniLM-L6-v2) | Free |
+| Clinical Data | MIMIC-IV Demo (MIT/Harvard) | Free |
+| Visualization | Plotly 5.24 | Free |
+| PDF Export | fpdf2 | Free |
+| **Total Cost** | | **Rs. 0** |
 
 | Component | Role |  
 |---|---|  
@@ -217,3 +292,5 @@ Base paper-
 \#\# 📄 License
 
 This project is built for hackathon purposes. Clinical guideline content belongs to their respective publishing organizations. MIMIC-III data is used under the PhysioNet open-access demo license.
+
+*IGNISIA AI Hackathon 2026 | HC01 | Built with Gemini AI + MIMIC-IV + Surviving Sepsis Campaign 2021*
